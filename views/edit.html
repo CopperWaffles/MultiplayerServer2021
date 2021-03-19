@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+</head>
+<body>
+    <h1>Edit Players</h1>
+    <nav>            
+        <a href="index.html">Index</a>
+    </nav>
+    <form action="">
+       <div class="container">
+            <label for="oname"><b>Original Name</b></label>
+            <input type="text" id="originalName" placeholder="Enter Origianl Name" name = "oname" required>
+
+            <label for="Nname"><b>New Name</b></label>
+            <input type="text" id="changedName" placeholder="Enter New Name" name = "Nname" required>
+
+            <!-- <button type="submit" onclick="editNames()">Submit</button> -->
+            <input type="button" value="Submit" onclick="editNames()">
+       </div>
+    </form>
+    <script>
+        var socket = io()
+
+        // function editNames()
+        // {
+        //      var originalName = document.getElementById("originalName").innerHTML
+        //      var changedName = document.getElementById("changedName").innerHTML
+        //     socket.emit('/editNames',{originalName:originalName.value, changedName:changedName.value})
+        // }
+        function editNames()
+        {
+            var originalName = document.getElementById("originalName")
+            var changedName = document.getElementById("changedName")
+            socket.emit("/editNames", {
+                originalName:originalName.value,
+                changedName:changedName.value
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>   
+    <div id="container">
+        <h1>List of Players</h1>
+        <nav>            
+            <a href="edit.html">Edit</a>
+        </nav>
+        <script>
+            fetch('/download').then(function(datas){
+                datas.json().then(function(theScores){
+                    console.log(theScores)
+                    for(let data of theScores.data){
+                        var gameElement = document.createElement('p')
+                        gameElement.innerHTML = 'Name: ' + data.playername + " Score: " + data.score + " Games Played: " + data.gamesPlayed
+                        document.getElementById('container').appendChild(gameElement)
+                    }
+                })
+            })
+        </script>
+    </div>
+</body>
+</html>
